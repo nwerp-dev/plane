@@ -123,18 +123,16 @@ x-live-env: &live-env
 
 
 services:
-  # web:
-  #   container_name: web
-  #   build:
-  #     context: .
-  #     dockerfile: ./apps/web/Dockerfile.web
-  #     args:
-  #       DOCKER_BUILDKIT: 1
-  #   restart: always
-  #   networks:
-  #     - dokploy-network
-  #   depends_on:
-  #     - api
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile.web
+      args:
+        DOCKER_BUILDKIT: 1
+    restart: always
+    depends_on:
+      - api
 
   # admin:
   #   container_name: admin
@@ -164,22 +162,6 @@ services:
   #     - api
   #     - web
 
-  # api:
-  #   container_name: api
-  #   build:
-  #     context: ./apps/api
-  #     dockerfile: Dockerfile.api
-  #     args:
-  #       DOCKER_BUILDKIT: 1
-  #   environment:
-  #     <<: [*plane, *app-env, *pg-env, *redis-env, *rabbitmq-env, *docstore-env]
-  #   restart: always
-  #   command: ./bin/docker-entrypoint-api.sh
-  #   networks:
-  #     - dokploy-network
-  #   depends_on:
-  #     - plane-db
-  #     - plane-redis
 
   api:
     container_name: api
