@@ -186,9 +186,9 @@ services:
     build:
       context: ./apps/api
       dockerfile: Dockerfile.api
-      command: ./bin/docker-entrypoint-api.sh
       args:
         DOCKER_BUILDKIT: 1
+    command: ./bin/docker-entrypoint-api.sh
     environment:
       <<: [*plane, *app-env, *pg-env, *redis-env, *rabbitmq-env, *docstore-env]
     deploy:
