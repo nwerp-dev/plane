@@ -171,6 +171,8 @@ services:
   #     dockerfile: Dockerfile.api
   #     args:
   #       DOCKER_BUILDKIT: 1
+  #   environment:
+  #     <<: [*plane, *app-env, *pg-env, *redis-env, *rabbitmq-env, *docstore-env]
   #   restart: always
   #   command: ./bin/docker-entrypoint-api.sh
   #   networks:
@@ -178,6 +180,26 @@ services:
   #   depends_on:
   #     - plane-db
   #     - plane-redis
+
+  api:
+    container_name: api
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile.api
+      command: ./bin/docker-entrypoint-api.sh
+      args:
+        DOCKER_BUILDKIT: 1
+    environment:
+      <<: [*plane, *app-env, *pg-env, *redis-env, *rabbitmq-env, *docstore-env]
+    deploy:
+      replicas: ${API_REPLICAS:-1}
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - api_logs:/code/plane/logs
+    depends_on:
+      - plane-db
+      - plane-redis
 
   # worker:
   #   container_name: bgworker
