@@ -134,19 +134,19 @@ services:
     depends_on:
       - api
 
-  # admin:
-  #   container_name: admin
-  #   build:
-  #     context: .
-  #     dockerfile: ./apps/admin/Dockerfile.admin
-  #     args:
-  #       DOCKER_BUILDKIT: 1
-  #   restart: always
-  #   networks:
-  #     - dokploy-network
-  #   depends_on:
-  #     - api
-  #     - web
+  admin:
+    container_name: admin
+    build:
+      context: .
+      dockerfile: ./apps/admin/Dockerfile.admin
+      args:
+        DOCKER_BUILDKIT: 1
+    restart: always
+    networks:
+      - dokploy-network
+    depends_on:
+      - api
+      - web
 
   # space:
   #   container_name: space
@@ -183,37 +183,48 @@ services:
       - plane-db
       - plane-redis
 
-  # worker:
-  #   container_name: bgworker
-  #   build:
-  #     context: ./apps/api
-  #     dockerfile: Dockerfile.api
-  #     args:
-  #       DOCKER_BUILDKIT: 1
-  #   restart: always
-  #   command: ./bin/docker-entrypoint-worker.sh
-  #   networks:
-  #     - dokploy-network
-  #   depends_on:
-  #     - api
-  #     - plane-db
-  #     - plane-redis
+  worker:
+    container_name: bgworker
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile.api
+      args:
+        DOCKER_BUILDKIT: 1
+    command: ./bin/docker-entrypoint-worker.sh
+    environment:
+      <<: [*plane, *app-env, *pg-env, *redis-env, *rabbitmq-env, *docstore-env]
+    deploy:
+      replicas: ${WORKER_REPLICAS:-1}
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - worker_logs:/code/plane/logs
+    depends_on:
+      - api
+      - plane-db
+      - plane-redis
 
-  # beat-worker:
-  #   container_name: beatworker
-  #   build:
-  #     context: ./apps/api
-  #     dockerfile: Dockerfile.api
-  #     args:
-  #       DOCKER_BUILDKIT: 1
-  #   restart: always
-  #   command: ./bin/docker-entrypoint-beat.sh
-  #   networks:
-  #     - dokploy-network
-  #   depends_on:
-  #     - api
-  #     - plane-db
-  #     - plane-redis
+  beat-worker:
+    container_name: beatworker
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile.api
+      args:
+        DOCKER_BUILDKIT: 1
+    restart: always
+    command: ./bin/docker-entrypoint-beat.sh
+    environment:
+      <<: [*plane, *app-env, *pg-env, *redis-env, *rabbitmq-env, *docstore-env]
+    deploy:
+      replicas: ${BEAT_WORKER_REPLICAS:-1}
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - beat_worker_logs:/code/plane/logs
+    depends_on:
+      - api
+      - plane-db
+      - plane-redis
 
   migrator:
     container_name: plane-migrator
