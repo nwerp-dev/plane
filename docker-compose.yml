@@ -331,6 +331,9 @@ services:
       context: ./apps/proxy
       dockerfile: Dockerfile.ce
     restart: always
+    volumes:
+      - proxy_config:/config
+      - proxy_data:/data
     networks:
       - dokploy-network
     ports:
