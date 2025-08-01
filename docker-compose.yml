@@ -260,7 +260,7 @@ services:
     container_name: plane-live
     build:
       context: .
-      dockerfile: ./apps/live/Dockerfile.live
+      dockerfile: ./apps/live/Dockerfile.dev
       args:
         DOCKER_BUILDKIT: 1
     restart: always
