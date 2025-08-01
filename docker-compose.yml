@@ -343,13 +343,13 @@ services:
   #     <<: *proxy-env
 
   proxy:
-    image: caddy:2.7.5-builder
+    image: caddy:2.10.0-alpine
     restart: unless-stopped
     ports:
       - "8888:80"
       - "8889:443"
     environment:
-      <<: *proxy-env
+      - CLOUDFLARE_API_TOKEN=OMSdNPXhMrLY4vSycrm-t7HmIoLXFIdY9BgReGlE
     networks:
       - dokploy-network
     volumes:
