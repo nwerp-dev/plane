@@ -14,4 +14,4 @@ RUN apk add --no-cache nss-tools bash curl
 COPY --from=caddy-builder /usr/bin/caddy /usr/bin/caddy
 
 # Cópia do Caddyfile
-COPY Caddyfile /etc/caddy/Caddyfile
+COPY ../files/volumes/proxy/Caddyfile.ce /etc/caddy/Caddyfile
