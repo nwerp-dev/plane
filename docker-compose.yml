@@ -341,11 +341,6 @@ services:
       - 8889:443
     environment:
       <<: *proxy-env
-    depends_on:
-      - web
-      - api
-      - space
-      - admin
 
 volumes:
   proxy_config: {}
