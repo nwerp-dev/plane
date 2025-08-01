@@ -275,6 +275,8 @@ services:
       - dokploy-network
     environment:
       <<: *pg-env
+    ports:
+      - "5499:5432"
     deploy:
       replicas: 1
       restart_policy:
