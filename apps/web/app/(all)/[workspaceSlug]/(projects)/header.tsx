@@ -38,6 +38,42 @@ export const WorkspaceDashboardHeader = observer(() => {
             </Breadcrumbs>
           </div>
         </Header.LeftItem>
+        <Header.RightItem>
+          <Button
+            variant="neutral-primary"
+            size="sm"
+            onClick={() => toggleWidgetSettings(true)}
+            className="my-auto mb-0"
+          >
+            <Shapes size={16} />
+            <div className="hidden text-xs font-medium sm:hidden md:block">{t("home.manage_widgets")}</div>
+          </Button>
+          <a
+            onClick={() =>
+              captureElementAndEvent({
+                element: {
+                  elementName: HEADER_GITHUB_ICON,
+                },
+                event: {
+                  eventName: GITHUB_REDIRECTED_TRACKER_EVENT,
+                  state: "SUCCESS",
+                },
+              })
+            }
+            className="flex flex-shrink-0 items-center gap-1.5 rounded bg-custom-background-80 px-3 py-1.5"
+            href="https://plane.nwerp.ai"
+            target=""
+            rel="noopener noreferrer"
+          >
+            <Image
+              src={resolvedTheme === "dark" ? githubWhiteImage : githubBlackImage}
+              height={16}
+              width={16}
+              alt="GitHub Logo"
+            />
+            <span className="hidden text-xs font-medium sm:hidden md:block">{t("home.star_us_on_github")}</span>
+          </a>
+        </Header.RightItem>
       </Header>
     </>
   );
