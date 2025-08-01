@@ -342,20 +342,20 @@ services:
   #   environment:
   #     <<: *proxy-env
 
-  proxy:
-    image: caddy:2.10.0-alpine
-    restart: unless-stopped
-    ports:
-      - "8888:80"
-      - "8889:443"
-    environment:
-      - CLOUDFLARE_API_TOKEN=OMSdNPXhMrLY4vSycrm-t7HmIoLXFIdY9BgReGlE
-    networks:
-      - dokploy-network
-    volumes:
-      - ./files/volumes/proxy/Caddyfile.ce:/etc/caddy/Caddyfile
-      - proxy_data:/data
-      - proxy_config:/config
+  # proxy:
+  #   image: caddy:2.10.0-alpine
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8888:80"
+  #     - "8889:443"
+  #   environment:
+  #     - CLOUDFLARE_API_TOKEN=OMSdNPXhMrLY4vSycrm-t7HmIoLXFIdY9BgReGlE
+  #   networks:
+  #     - dokploy-network
+  #   volumes:
+  #     - ./files/volumes/proxy/Caddyfile.ce:/etc/caddy/Caddyfile
+  #     - proxy_data:/data
+  #     - proxy_config:/config
 
 
 
