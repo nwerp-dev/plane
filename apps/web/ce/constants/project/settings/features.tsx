@@ -81,8 +81,8 @@ export const PROJECT_OTHER_FEATURES_LIST: TOtherFeatureList = {
     title: "Time Tracking",
     description: "Log time, see timesheets, and download full CSVs for your entire workspace.",
     icon: <Timer className="h-5 w-5 flex-shrink-0 text-custom-text-300" />,
-    isPro: true,
-    isEnabled: false,
+    isPro: false,
+    isEnabled: true,
   },
 };
 
