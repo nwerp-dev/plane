@@ -1,54 +1,65 @@
+# syntax=docker/dockerfile:1.7
+
 FROM node:22-alpine AS base
+
+# Dependências úteis para builds nativos (sharp/canvas/bcrypt etc.)
+RUN apk add --no-cache libc6-compat git python3 make g++ pkgconfig
+# Fixar Yarn 1.x (se necessário)
+RUN corepack enable && corepack prepare yarn@1.22.22 --activate
 
 # *****************************************************************************
 # STAGE 1: Prune the project
 # *****************************************************************************
 FROM base AS builder
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk update
-RUN apk add --no-cache libc6-compat
-# Set working directory
 WORKDIR /app
+
+# Turbo para gerar /out (json/full/yarn.lock)
 RUN yarn global add turbo
+
+# Copia o monorepo completo (respeita .dockerignore)
 COPY . .
+
+# Gera contexto minimizado para a app "live"
 RUN turbo prune live --docker
 
 # *****************************************************************************
 # STAGE 2: Install dependencies & build the project
 # *****************************************************************************
-# Add lockfile and package.json's of isolated subworkspace
 FROM base AS installer
-RUN apk update
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# First install dependencies (as they change less often)
-COPY .gitignore .gitignore
+# Copia manifests isolados + lock
 COPY --from=builder /app/out/json/ .
 COPY --from=builder /app/out/yarn.lock ./yarn.lock
-RUN yarn install
 
-# Build the project and its dependencies
+# Instala dependências (com logs detalhados)
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache \
+    yarn install --frozen-lockfile --network-timeout 600000 --verbose
+
+# Copia código filtrado pelo prune
 COPY --from=builder /app/out/full/ .
-COPY turbo.json turbo.json
+
+# turbo.json pode estar fora do /out; traga do builder explicitamente
+COPY --from=builder /app/turbo.json ./turbo.json
 
 ENV TURBO_TELEMETRY_DISABLED=1
 
+# Build apenas do app "live"
 RUN yarn turbo build --filter=live
 
 # *****************************************************************************
 # STAGE 3: Run the project
 # *****************************************************************************
-
-FROM base AS runner
+FROM node:22-alpine AS runner
 WORKDIR /app
 
+# Apenas o necessário para runtime
 COPY --from=installer /app/packages ./packages
 COPY --from=installer /app/apps/live/dist ./live
 COPY --from=installer /app/node_modules ./node_modules
 
 ENV TURBO_TELEMETRY_DISABLED=1
-
 EXPOSE 3000
 
 CMD ["node", "live/server.js"]
