@@ -1,87 +1,111 @@
-# ===== Base =====
 FROM node:22-alpine AS base
-ENV NODE_ENV=production
-RUN apk add --no-cache libc6-compat
-# opcional: fixar yarn
-RUN corepack enable && corepack prepare yarn@1.22.22 --activate
 
-# ===== Builder: turbo prune =====
+# *****************************************************************************
+# STAGE 1: Build the project
+# *****************************************************************************
 FROM base AS builder
+RUN apk add --no-cache libc6-compat
+# Set working directory
 WORKDIR /app
+
 RUN yarn global add turbo
 COPY . .
-# reduz o contexto p/ o app "web"
+
 RUN turbo prune --scope=web --docker
 
-# ===== Installer: deps + build =====
+# *****************************************************************************
+# STAGE 2: Install dependencies & build the project
+# *****************************************************************************
+# Add lockfile and package.json's of isolated subworkspace
 FROM base AS installer
+
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Copia só os manifests gerados pelo prune (melhor cache)
+# First install the dependencies (as they change less often)
 COPY .gitignore .gitignore
 COPY --from=builder /app/out/json/ .
 COPY --from=builder /app/out/yarn.lock ./yarn.lock
+RUN yarn install --network-timeout 500000
 
-# Cache de yarn e turbo (BuildKit)
-RUN --mount=type=cache,target=/root/.cache/yarn \
-    --mount=type=cache,target=/app/.yarn \
-    yarn install --frozen-lockfile --network-timeout 500000
-
-# Copia código isolado (prune full) e turbo.json
+# Build the project
 COPY --from=builder /app/out/full/ .
 COPY turbo.json turbo.json
 
-# VARS públicas que entram no bundle (somente no build!)
 ARG NEXT_PUBLIC_API_BASE_URL=""
+ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
+
 ARG NEXT_PUBLIC_ADMIN_BASE_URL=""
+ENV NEXT_PUBLIC_ADMIN_BASE_URL=$NEXT_PUBLIC_ADMIN_BASE_URL
+
 ARG NEXT_PUBLIC_ADMIN_BASE_PATH="/god-mode"
+ENV NEXT_PUBLIC_ADMIN_BASE_PATH=$NEXT_PUBLIC_ADMIN_BASE_PATH
+
 ARG NEXT_PUBLIC_LIVE_BASE_URL=""
+ENV NEXT_PUBLIC_LIVE_BASE_URL=$NEXT_PUBLIC_LIVE_BASE_URL
+
 ARG NEXT_PUBLIC_LIVE_BASE_PATH="/live"
+ENV NEXT_PUBLIC_LIVE_BASE_PATH=$NEXT_PUBLIC_LIVE_BASE_PATH
+
 ARG NEXT_PUBLIC_SPACE_BASE_URL=""
+ENV NEXT_PUBLIC_SPACE_BASE_URL=$NEXT_PUBLIC_SPACE_BASE_URL
+
 ARG NEXT_PUBLIC_SPACE_BASE_PATH="/spaces"
+ENV NEXT_PUBLIC_SPACE_BASE_PATH=$NEXT_PUBLIC_SPACE_BASE_PATH
+
 ARG NEXT_PUBLIC_WEB_BASE_URL=""
+ENV NEXT_PUBLIC_WEB_BASE_URL=$NEXT_PUBLIC_WEB_BASE_URL
 
-# Exporta para o processo de build do Next
-ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL \
-    NEXT_PUBLIC_ADMIN_BASE_URL=$NEXT_PUBLIC_ADMIN_BASE_URL \
-    NEXT_PUBLIC_ADMIN_BASE_PATH=$NEXT_PUBLIC_ADMIN_BASE_PATH \
-    NEXT_PUBLIC_LIVE_BASE_URL=$NEXT_PUBLIC_LIVE_BASE_URL \
-    NEXT_PUBLIC_LIVE_BASE_PATH=$NEXT_PUBLIC_LIVE_BASE_PATH \
-    NEXT_PUBLIC_SPACE_BASE_URL=$NEXT_PUBLIC_SPACE_BASE_URL \
-    NEXT_PUBLIC_SPACE_BASE_PATH=$NEXT_PUBLIC_SPACE_BASE_PATH \
-    NEXT_PUBLIC_WEB_BASE_URL=$NEXT_PUBLIC_WEB_BASE_URL \
-    NEXT_TELEMETRY_DISABLED=1 \
-    TURBO_TELEMETRY_DISABLED=1
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV TURBO_TELEMETRY_DISABLED=1
 
-# Cache do .turbo (acelera build) — requer BuildKit
-RUN --mount=type=cache,target=/app/.turbo \
-    yarn turbo run build --filter=web
+RUN yarn turbo run build --filter=web
 
-# (opcional) reduzir camada
-RUN yarn cache clean || true
-
-# ===== Runner =====
-FROM node:22-alpine AS runner
-ENV NODE_ENV=production PORT=3000
+# *****************************************************************************
+# STAGE 3: Copy the project and start it
+# *****************************************************************************
+FROM base AS runner
 WORKDIR /app
 
-# Não rode como root
-RUN addgroup --system --gid 1001 nodejs \
- && adduser  --system --uid 1001 nextjs
+# Don't run production as root
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
 USER nextjs
 
-# Copia apenas o que o standalone precisa
-COPY --from=installer --chown=nextjs:nodejs /app/apps/web/.next/standalone ./
-COPY --from=installer --chown=nextjs:nodejs /app/apps/web/.next/static ./apps/web/.next/static
-COPY --from=installer --chown=nextjs:nodejs /app/apps/web/public ./apps/web/public
 
-# Se houver variáveis de runtime realmente lidas pelo server.js, adicione aqui.
-ENV NEXT_TELEMETRY_DISABLED=1 TURBO_TELEMETRY_DISABLED=1
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=installer /app/apps/web/.next/standalone ./
+COPY --from=installer /app/apps/web/.next/static ./apps/web/.next/static
+COPY --from=installer /app/apps/web/public ./apps/web/public
+
+ARG NEXT_PUBLIC_API_BASE_URL=""
+ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
+
+ARG NEXT_PUBLIC_ADMIN_BASE_URL=""
+ENV NEXT_PUBLIC_ADMIN_BASE_URL=$NEXT_PUBLIC_ADMIN_BASE_URL
+
+ARG NEXT_PUBLIC_ADMIN_BASE_PATH="/god-mode"
+ENV NEXT_PUBLIC_ADMIN_BASE_PATH=$NEXT_PUBLIC_ADMIN_BASE_PATH
+
+ARG NEXT_PUBLIC_LIVE_BASE_URL=""
+ENV NEXT_PUBLIC_LIVE_BASE_URL=$NEXT_PUBLIC_LIVE_BASE_URL
+
+ARG NEXT_PUBLIC_LIVE_BASE_PATH="/live"
+ENV NEXT_PUBLIC_LIVE_BASE_PATH=$NEXT_PUBLIC_LIVE_BASE_PATH
+
+ARG NEXT_PUBLIC_SPACE_BASE_URL=""
+ENV NEXT_PUBLIC_SPACE_BASE_URL=$NEXT_PUBLIC_SPACE_BASE_URL
+
+ARG NEXT_PUBLIC_SPACE_BASE_PATH="/spaces"
+ENV NEXT_PUBLIC_SPACE_BASE_PATH=$NEXT_PUBLIC_SPACE_BASE_PATH
+
+ARG NEXT_PUBLIC_WEB_BASE_URL=""
+ENV NEXT_PUBLIC_WEB_BASE_URL=$NEXT_PUBLIC_WEB_BASE_URL
+
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV TURBO_TELEMETRY_DISABLED=1
 
 EXPOSE 3000
-
-# Healthcheck simples
-HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-  CMD wget -qO- http://127.0.0.1:3000/ || exit 1
 
 CMD ["node", "apps/web/server.js"]
