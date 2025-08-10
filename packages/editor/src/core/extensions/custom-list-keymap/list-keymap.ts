@@ -45,15 +45,13 @@ export const ListKeymap = ({ tabIndex }: { tabIndex?: number }) =>
           if (tabIndex !== undefined && tabIndex !== null) {
             return false;
           }
-          return false;
+          return true;
         },
         "Shift-Tab": () => {
-          if (this.editor.isActive(CORE_EXTENSIONS.LIST_ITEM) || this.editor.isActive(CORE_EXTENSIONS.TASK_ITEM)) {
-            if (this.editor.commands.liftListItem(CORE_EXTENSIONS.LIST_ITEM)) {
-              return true;
-            } else if (this.editor.commands.liftListItem(CORE_EXTENSIONS.TASK_ITEM)) {
-              return true;
-            }
+          if (this.editor.commands.liftListItem(CORE_EXTENSIONS.LIST_ITEM)) {
+            return true;
+          } else if (this.editor.commands.liftListItem(CORE_EXTENSIONS.TASK_ITEM)) {
+            return true;
           }
           // if tabIndex is set, we don't want to handle Tab key
           if (tabIndex !== undefined && tabIndex !== null) {

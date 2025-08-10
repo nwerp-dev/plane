@@ -217,6 +217,7 @@ export const GptAssistantPopover: React.FC<Props> = (props) => {
               <div className="text-sm">
                 Content:
                 <RichTextEditor
+                  
                   editable={false}
                   id="ai-assistant-content"
                   initialValue={prompt}
@@ -232,6 +233,7 @@ export const GptAssistantPopover: React.FC<Props> = (props) => {
               <div className="page-block-section max-h-[8rem] text-sm">
                 Response:
                 <RichTextEditor
+                  
                   editable={false}
                   id="ai-assistant-response"
                   initialValue={`<p>${response}</p>`}

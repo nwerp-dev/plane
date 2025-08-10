@@ -102,6 +102,7 @@ export const CommentCard: React.FC<Props> = observer((props) => {
                 name="comment_html"
                 render={({ field: { onChange, value } }) => (
                   <LiteTextEditor
+                    
                     anchor={anchor}
                     workspaceId={workspaceID?.toString() ?? ""}
                     onEnterKeyPress={handleSubmit(handleCommentUpdate)}

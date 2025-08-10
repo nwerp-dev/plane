@@ -13,33 +13,34 @@ import { cn } from "@plane/utils";
 import { AppProvider } from "./provider";
 
 export const metadata: Metadata = {
-  title: "Plane | Simple, extensible, open-source project management tool.",
+  title: "NWERP | Plataforma simples e extensível de gestão empresarial.",
   description: SITE_DESCRIPTION,
-  metadataBase: new URL("https://app.plane.so"),
+  metadataBase: new URL("https://plane.nwerp.ai"),
   openGraph: {
-    title: "Plane | Simple, extensible, open-source project management tool.",
-    description: "Open-source project management tool to manage work items, cycles, and product roadmaps easily",
-    url: "https://app.plane.so/",
+    title: "NWERP | Plataforma simples e extensível de gestão empresarial.",
+    description:
+      "Plataforma completa para gestão empresarial, integrando operações, processos e indicadores de forma prática e eficiente.",
+    url: "https://plane.nwerp.ai/",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Plane - Modern project management",
+        alt: "NWERP - Gestão empresarial moderna",
       },
     ],
   },
   keywords:
-    "software development, plan, ship, software, accelerate, code management, release management, project management, work item tracking, agile, scrum, kanban, collaboration",
+    "gestão empresarial, ERP, controle de operações, indicadores, produtividade, processos, administração, gestão financeira, gestão de vendas, gestão de estoque, colaboração empresarial",
   twitter: {
-    site: "@planepowers",
+    site: "@nwerp",
     card: "summary_large_image",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Plane - Modern project management",
+        alt: "NWERP - Gestão empresarial moderna",
       },
     ],
   },
@@ -58,15 +59,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const isSessionRecorderEnabled = parseInt(process.env.NEXT_PUBLIC_ENABLE_SESSION_RECORDER || "0");
 
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <meta name="theme-color" content="#fff" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest.json" />
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
-        {/* Meta info for PWA */}
-        <meta name="application-name" content="Plane" />
+        {/* Meta info para PWA */}
+        <meta name="application-name" content="NWERP" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content={SITE_NAME} />

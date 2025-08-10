@@ -26,6 +26,7 @@ export const PeekOverviewIssueDetails: React.FC<Props> = observer((props) => {
       <h4 className="break-words text-2xl font-medium">{issueDetails.name}</h4>
       {description !== "" && description !== "<p></p>" && (
         <RichTextEditor
+          
           editable={false}
           anchor={anchor}
           id={issueDetails.id}

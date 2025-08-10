@@ -280,7 +280,7 @@ export class IssueRelationStore implements IIssueRelationStore {
         for (const issue of issues) {
           const { issue_relation, issue_related, id: issueId } = issue;
 
-          const issueRelations: { [key in TIssueRelationTypes]?: string[] } = {};
+          const issueRelations: Partial<Record<TIssueRelationTypes, string[]>> = {};
 
           if (issue_relation && Array.isArray(issue_relation) && issue_relation.length) {
             for (const relation of issue_relation) {
@@ -288,8 +288,8 @@ export class IssueRelationStore implements IIssueRelationStore {
 
               if (!relation_type) continue;
 
-              if (issueRelations[relation_type]) issueRelations[relation_type]?.push(id);
-              else issueRelations[relation_type] = [id];
+              if ((issueRelations as any)[relation_type]) (issueRelations as any)[relation_type]?.push(id);
+              else (issueRelations as any)[relation_type] = [id];
             }
           }
 
@@ -301,8 +301,8 @@ export class IssueRelationStore implements IIssueRelationStore {
 
               const reverseRelatedType = REVERSE_RELATIONS[relation_type as TIssueRelationTypes];
 
-              if (issueRelations[reverseRelatedType]) issueRelations[reverseRelatedType]?.push(id);
-              else issueRelations[reverseRelatedType] = [id];
+              if ((issueRelations as any)[reverseRelatedType]) (issueRelations as any)[reverseRelatedType]?.push(id);
+              else (issueRelations as any)[reverseRelatedType] = [id];
             }
           }
 

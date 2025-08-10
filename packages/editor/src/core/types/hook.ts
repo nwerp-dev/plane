@@ -1,21 +1,12 @@
 import type { HocuspocusProvider } from "@hocuspocus/provider";
+import type { Content } from "@tiptap/core";
 import type { EditorProps } from "@tiptap/pm/view";
 // local imports
-import type {
-  EditorTitleRefApi,
-  ICollaborativeDocumentEditorProps,
-  IEditorProps,
-  IReadOnlyEditorProps,
-} from "./editor";
+import type { ICollaborativeDocumentEditorProps, IEditorProps, IReadOnlyEditorProps } from "./editor";
 
 type TCoreHookProps = Pick<
   IEditorProps,
-  | "disabledExtensions"
-  | "editorClassName"
-  | "extensions"
-  | "flaggedExtensions"
-  | "handleEditorReady"
-  | "isSmoothCursorEnabled"
+  "disabledExtensions" | "editorClassName" | "extensions" | "flaggedExtensions" | "handleEditorReady"
 > & {
   editorProps?: EditorProps;
 };
@@ -37,7 +28,7 @@ export type TEditorHookProps = TCoreHookProps &
   > & {
     editable: boolean;
     enableHistory: boolean;
-    initialValue?: string;
+    initialValue?: Content;
     provider?: HocuspocusProvider;
   };
 
@@ -55,11 +46,8 @@ export type TCollaborativeEditorHookProps = TCoreHookProps &
     | "placeholder"
     | "tabIndex"
   > &
-  Pick<ICollaborativeDocumentEditorProps, "embedHandler" | "realtimeConfig" | "serverHandler" | "user"> & {
-    titleRef?: React.MutableRefObject<EditorTitleRefApi | null>;
-    updatePageProperties?: (pageId: string, messageType: string, payload?: any, performAction?: boolean) => void;
-  };
+  Pick<ICollaborativeDocumentEditorProps, "embedHandler" | "realtimeConfig" | "serverHandler" | "user">;
 
-export type TReadOnlyEditorHookProps = Omit<TCoreHookProps, "isSmoothCursorEnabled"> &
+export type TReadOnlyEditorHookProps = TCoreHookProps &
   Pick<TEditorHookProps, "initialValue" | "provider"> &
   Pick<IReadOnlyEditorProps, "fileHandler" | "forwardedRef" | "mentionHandler">;

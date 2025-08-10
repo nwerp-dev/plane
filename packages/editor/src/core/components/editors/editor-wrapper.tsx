@@ -14,7 +14,6 @@ type Props = IEditorProps & {
   children?: (editor: Editor) => React.ReactNode;
   editable: boolean;
   extensions: Extensions;
-  isSmoothCursorEnabled: boolean;
 };
 
 export const EditorWrapper: React.FC<Props> = (props) => {
@@ -31,11 +30,10 @@ export const EditorWrapper: React.FC<Props> = (props) => {
     fileHandler,
     flaggedExtensions,
     forwardedRef,
-    handleEditorReady,
-    isSmoothCursorEnabled,
     mentionHandler,
     onChange,
     onTransaction,
+    handleEditorReady,
     autofocus,
     placeholder,
     tabIndex,
@@ -51,13 +49,12 @@ export const EditorWrapper: React.FC<Props> = (props) => {
     fileHandler,
     flaggedExtensions,
     forwardedRef,
-    handleEditorReady,
-    isSmoothCursorEnabled,
     id,
     initialValue,
     mentionHandler,
     onChange,
     onTransaction,
+    handleEditorReady,
     autofocus,
     placeholder,
     tabIndex,

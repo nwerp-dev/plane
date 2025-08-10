@@ -209,6 +209,7 @@ export const EditorAIMenu: React.FC<Props> = (props) => {
                 {response ? (
                   <div>
                     <RichTextEditor
+                      
                       displayConfig={{
                         fontSize: "small-font",
                       }}

@@ -60,6 +60,7 @@ export class ProfileStore implements IUserProfileStore {
     updated_at: "",
     language: "",
     start_of_the_week: EStartOfTheWeek.SUNDAY,
+    is_smooth_cursor_enabled: false,
   };
 
   // services

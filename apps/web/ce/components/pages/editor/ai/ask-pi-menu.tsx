@@ -39,6 +39,7 @@ export const AskPiMenu: React.FC<Props> = (props) => {
         {response ? (
           <div>
             <RichTextEditor
+              
               editable={false}
               displayConfig={{
                 fontSize: "small-font",

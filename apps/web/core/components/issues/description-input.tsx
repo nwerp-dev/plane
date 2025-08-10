@@ -137,6 +137,7 @@ export const IssueDescriptionInput: FC<IssueDescriptionInputProps> = observer((p
           control={control}
           render={({ field: { onChange } }) => (
             <RichTextEditor
+              
               editable={!disabled}
               id={issueId}
               initialValue={localIssueDescription.description_html ?? "<p></p>"}

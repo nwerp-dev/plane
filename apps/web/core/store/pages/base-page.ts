@@ -92,6 +92,11 @@ export class BasePage extends ExtendedBasePage implements TBasePage {
   updated_by: string | undefined;
   created_at: Date | undefined;
   updated_at: Date | undefined;
+  // extended properties
+  is_description_empty: boolean;
+  deleted_at: Date | undefined;
+  moved_to_page: string | null;
+  moved_to_project: string | null;
   // helpers
   oldName: string = "";
   // services
@@ -127,6 +132,10 @@ export class BasePage extends ExtendedBasePage implements TBasePage {
     this.updated_by = page?.updated_by || undefined;
     this.created_at = page?.created_at || undefined;
     this.updated_at = page?.updated_at || undefined;
+    this.is_description_empty = page?.is_description_empty || false;
+    this.deleted_at = page?.deleted_at || undefined;
+    this.moved_to_page = page?.moved_to_page || null;
+    this.moved_to_project = page?.moved_to_project || null;
     this.oldName = page?.name || "";
 
     makeObservable(this, {
@@ -150,6 +159,10 @@ export class BasePage extends ExtendedBasePage implements TBasePage {
       updated_by: observable.ref,
       created_at: observable.ref,
       updated_at: observable.ref,
+      is_description_empty: observable.ref,
+      deleted_at: observable.ref,
+      moved_to_page: observable.ref,
+      moved_to_project: observable.ref,
       // helpers
       oldName: observable.ref,
       setIsSubmitting: action,
@@ -224,7 +237,7 @@ export class BasePage extends ExtendedBasePage implements TBasePage {
       created_at: this.created_at,
       updated_at: this.updated_at,
       ...this.asJSONExtended,
-    };
+          } as any;
   }
 
   get isCurrentUserOwner() {
@@ -268,7 +281,7 @@ export class BasePage extends ExtendedBasePage implements TBasePage {
       runInAction(() => {
         Object.keys(pageData).forEach((key) => {
           const currentPageKey = key as keyof TPage;
-          set(this, key, currentPage?.[currentPageKey] || undefined);
+          set(this, key, (currentPage as any)?.[currentPageKey] || undefined);
         });
       });
       throw error;

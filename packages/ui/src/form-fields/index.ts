@@ -4,3 +4,4 @@ export * from "./textarea";
 export * from "./input-color-picker";
 export * from "./checkbox";
 export * from "./checkbox-select";
+export * from "./password";

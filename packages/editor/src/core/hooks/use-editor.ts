@@ -1,5 +1,5 @@
 import { DOMSerializer } from "@tiptap/pm/model";
-import { useEditorState, useEditor as useTiptapEditor, findChildren } from "@tiptap/react";
+import { useEditorState, useEditor as useTiptapEditor } from "@tiptap/react";
 import { useImperativeHandle, useEffect } from "react";
 import * as Y from "yjs";
 // components
@@ -18,7 +18,6 @@ import { scrollToNodeViaDOMCoordinates } from "@/helpers/scroll-to-node";
 import { CoreEditorProps } from "@/props";
 // types
 import type { TEditorCommands, TEditorHookProps } from "@/types";
-import { CORE_EDITOR_META } from "@/constants/meta";
 
 export const useEditor = (props: TEditorHookProps) => {
   const {
@@ -35,7 +34,6 @@ export const useEditor = (props: TEditorHookProps) => {
     handleEditorReady,
     id = "",
     initialValue,
-    isSmoothCursorEnabled = false,
     mentionHandler,
     onAssetChange,
     onChange,
@@ -61,7 +59,6 @@ export const useEditor = (props: TEditorHookProps) => {
       },
       extensions: [
         ...CoreEditorExtensions({
-          isSmoothCursorEnabled,
           editable,
           disabledExtensions,
           enableHistory,
@@ -73,7 +70,7 @@ export const useEditor = (props: TEditorHookProps) => {
         }),
         ...extensions,
       ],
-      content: typeof initialValue === "string" && initialValue.trim() !== "" ? initialValue : "<p></p>",
+      content: initialValue,
       onCreate: () => handleEditorReady?.(true),
       onTransaction: () => {
         onTransaction?.();
@@ -272,57 +269,6 @@ export const useEditor = (props: TEditorHookProps) => {
         const document = provider?.document;
         if (!document) return;
         Y.applyUpdate(document, value);
-      },
-      editorHasSynced: () => (provider ? provider.isSynced : false),
-      findAndDeleteNode: ({ attribute, value }: { attribute: string; value: string | string[] }, nodeName: string) => {
-        // We use a single transaction for all deletions
-        editor
-          ?.chain()
-          .command(({ tr }) => {
-            // Set the metadata directly on the transaction
-            tr.setMeta(CORE_EDITOR_META.INTENTIONAL_DELETION, true);
-            tr.setMeta(CORE_EDITOR_META.SKIP_FILE_DELETION, true);
-            tr.setMeta(CORE_EDITOR_META.ADD_TO_HISTORY, false);
-
-            let modified = false;
-
-            // Find and delete nodes based on whether value is an array or single string
-            if (Array.isArray(value)) {
-              // For array of values, find all matching nodes in one pass
-              const allNodesToDelete = value.flatMap((val) =>
-                findChildren(tr.doc, (node) => node.type.name === nodeName && node.attrs[attribute] === val)
-              );
-
-              // If we found nodes to delete
-              if (allNodesToDelete.length > 0) {
-                // Delete nodes in reverse order to maintain position integrity
-                allNodesToDelete
-                  .sort((a, b) => b.pos - a.pos)
-                  .forEach((targetNode) => {
-                    tr.delete(targetNode.pos, targetNode.pos + targetNode.node.nodeSize);
-                  });
-                modified = true;
-              }
-            } else {
-              // Original single value logic
-              const nodes = findChildren(
-                tr.doc,
-                (node) => node.type.name === nodeName && node.attrs[attribute] === value
-              );
-
-              // If we found a node to delete
-              if (nodes.length > 0) {
-                // Get the first matching node
-                const targetNode = nodes[0];
-                // Delete the node directly using the transaction
-                tr.delete(targetNode.pos, targetNode.pos + targetNode.node.nodeSize);
-                modified = true;
-              }
-            }
-
-            return modified; // Return true if we made changes, false otherwise
-          })
-          .run();
       },
     }),
     [editor, provider]

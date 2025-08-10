@@ -75,6 +75,7 @@ export const CommentCardEditForm: React.FC<Props> = observer((props) => {
         }}
       >
         <LiteTextEditor
+          
           workspaceId={workspaceId}
           workspaceSlug={workspaceSlug}
           ref={editorRef}

@@ -1,4 +1,5 @@
 import { Extension } from "@tiptap/core";
+import codemark from "prosemirror-codemark";
 // helpers
 import { CORE_EXTENSIONS } from "@/constants/extension";
 import { restorePublicImages } from "@/helpers/image-helpers";
@@ -7,8 +8,7 @@ import { TAdditionalActiveDropbarExtensions } from "@/plane-editor/types/utils";
 import { DropHandlerPlugin } from "@/plugins/drop";
 import { FilePlugins } from "@/plugins/file/root";
 import { MarkdownClipboardPlugin } from "@/plugins/markdown-clipboard";
-// prosemirror plugins
-import { codemark } from "./code-mark";
+// types
 
 import type { IEditorProps, TEditorAsset, TFileHandler, TReadOnlyFileHandler } from "@/types";
 type TActiveDropbarExtensions = CORE_EXTENSIONS.MENTION | CORE_EXTENSIONS.EMOJI | TAdditionalActiveDropbarExtensions;

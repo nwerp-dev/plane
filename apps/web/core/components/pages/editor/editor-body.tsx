@@ -209,6 +209,7 @@ export const PageEditorBody: React.FC<Props> = observer((props) => {
           </div>
         </div>
         <CollaborativeDocumentEditorWithRef
+          
           editable={isContentEditable}
           id={pageId}
           fileHandler={config.fileHandler}

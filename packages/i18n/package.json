@@ -1,0 +1,26 @@
+{
+  "name": "@plane/i18n",
+  "version": "0.27.1",
+  "license": "AGPL-3.0",
+  "description": "I18n shared across multiple apps internally",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "check:lint": "eslint . --max-warnings 0",
+    "check:types": "tsc --noEmit",
+    "check:format": "prettier --check \"**/*.{ts,tsx,md,json,css,scss}\"",
+    "fix:lint": "eslint . --fix",
+    "fix:format": "prettier --write \"**/*.{ts,tsx,md,json,css,scss}\"",
+    "clean": "rm -rf .turbo && rm -rf .next && rm -rf node_modules && rm -rf dist"
+  },
+  "dependencies": {
+    "@plane/utils": "*",
+    "intl-messageformat": "^10.7.11"
+  },
+  "devDependencies": {
+    "@plane/eslint-config": "*",
+    "@types/node": "^22.5.4",
+    "typescript": "5.8.3"
+  }
+}

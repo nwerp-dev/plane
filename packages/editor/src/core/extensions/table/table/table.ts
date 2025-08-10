@@ -110,7 +110,6 @@ export const Table = Node.create<TableOptions>({
     return ["table", mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), ["tbody", 0]];
   },
 
-  // @ts-expect-error commands are not typed
   addCommands() {
     return {
       insertTable:
@@ -124,28 +123,14 @@ export const Table = Node.create<TableOptions>({
             columnWidth: DEFAULT_COLUMN_WIDTH,
           });
           if (dispatch) {
-            const { selection } = tr;
-            const position = selection.$from.before(selection.$from.depth);
+            const offset = tr.selection.anchor + 1;
 
-            // Delete any existing content at the current position if it's an empty paragraph
-            const nodeAfter = tr.doc.nodeAt(position);
-            if (nodeAfter && nodeAfter.type.name === "paragraph" && nodeAfter.content.size === 0) {
-              tr.delete(position, position + nodeAfter.nodeSize);
-            }
-
-            // Insert the table
-            tr.insert(position, node);
-
-            // Find the position of the first cell's content
-            const resolvedPos = tr.doc.resolve(position + 1);
-            const firstCell = resolvedPos.nodeAfter;
-            if (firstCell) {
-              const cellPos = position + 1;
-              tr.setSelection(TextSelection.create(tr.doc, cellPos + 1)).scrollIntoView();
-            }
-
-            return true;
+            tr.replaceSelectionWith(node)
+              .scrollIntoView()
+              .setSelection(TextSelection.near(tr.doc.resolve(offset)));
           }
+
+          return true;
         },
       addColumnBefore:
         () =>

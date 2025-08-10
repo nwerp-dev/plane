@@ -132,6 +132,7 @@ export const DescriptionVersionsModal: React.FC<Props> = observer((props) => {
         <div className="mt-4 pb-4">
           {activeVersionDescription ? (
             <RichTextEditor
+              
               editable={false}
               containerClassName="p-0 !pl-0 border-none"
               editorClassName="pl-0"

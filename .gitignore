@@ -95,3 +95,4 @@ dev-editor
 # Redis
 *.rdb
 *.rdb.gz
+yarn.lock

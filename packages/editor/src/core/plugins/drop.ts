@@ -117,12 +117,7 @@ export const insertFilesSafely = async (args: InsertFilesSafelyArgs) => {
           pos,
           event,
         });
-      } else if (fileType === "attachment" && !disabledExtensions?.includes("attachments")) {
-        editor.commands.insertAttachmentComponent({
-          file,
-          pos,
-          event,
-        });
+      } else if (fileType === "attachment") {
       }
     } catch (error) {
       console.error(`Error while ${event}ing file:`, error);

@@ -74,6 +74,7 @@ export const ActivityList: React.FC<Props> = observer((props) => {
                       </div>
                       <div className="issue-comments-section p-0">
                         <RichTextEditor
+                          
                           editable={false}
                           id={activityItem.id}
                           initialValue={

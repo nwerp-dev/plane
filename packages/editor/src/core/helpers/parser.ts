@@ -13,7 +13,7 @@ import { convertHTMLDocumentToAllFormats } from "./yjs-utils";
  * @param htmlContent
  * @returns {string[]} array of asset sources
  */
-export const extractAssetsFromHTMLContent = (htmlContent: string): string[] => {
+const extractAssetsFromHTMLContent = (htmlContent: string): string[] => {
   // create a DOM parser
   const parser = new DOMParser();
   // parse the HTML string into a DOM document
