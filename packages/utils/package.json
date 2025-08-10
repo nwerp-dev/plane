@@ -13,7 +13,7 @@
   "scripts": {
     "build": "tsc --noEmit && tsup --minify",
     "dev": "tsup --watch",
-    "check:lint": "eslint . --max-warnings 20",
+    "check:lint": "eslint . --max-warnings 0",
     "check:types": "tsc --noEmit",
     "check:format": "prettier --check \"**/*.{ts,tsx,md,json,css,scss}\"",
     "fix:lint": "eslint . --fix",
@@ -29,7 +29,8 @@
     "lodash": "^4.17.21",
     "react": "^18.3.1",
     "tailwind-merge": "^2.5.5",
-    "uuid": "^10.0.0"
+    "uuid": "^10.0.0",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@plane/eslint-config": "*",
@@ -37,6 +38,7 @@
     "@types/node": "^22.5.4",
     "@types/react": "^18.3.11",
     "@types/uuid": "^9.0.8",
+    "@types/zxcvbn": "^4.4.5",
     "tsup": "8.4.0",
     "typescript": "5.8.3"
   }

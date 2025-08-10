@@ -70,7 +70,7 @@ export type TAuthErrorInfo = {
   type: EErrorAlertType;
   code: EAuthErrorCodes;
   title: string;
-  message: string | React.ReactNode;
+  message: any;
 };
 
 export enum EAdminAuthErrorCodes {
@@ -90,7 +90,7 @@ export type TAdminAuthErrorInfo = {
   type: EErrorAlertType;
   code: EAdminAuthErrorCodes;
   title: string;
-  message: string | React.ReactNode;
+  message: any;
 };
 
 export enum EAuthErrorCodes {

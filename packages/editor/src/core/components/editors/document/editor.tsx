@@ -15,15 +15,14 @@ import { useEditor } from "@/hooks/use-editor";
 // plane editor extensions
 import { DocumentEditorAdditionalExtensions } from "@/plane-editor/extensions";
 // types
-import { EditorRefApi, IDocumentEditorProps } from "@/types";
+import { EditorRefApi, IDocumentEditor } from "@/types";
 
-const DocumentEditor = (props: IDocumentEditorProps) => {
+const DocumentEditor = (props: IDocumentEditor) => {
   const {
     bubbleMenuEnabled = false,
     containerClassName,
     disabledExtensions,
     displayConfig = DEFAULT_DISPLAY_CONFIG,
-    editable,
     editorClassName = "",
     embedHandler,
     fileHandler,
@@ -31,10 +30,11 @@ const DocumentEditor = (props: IDocumentEditorProps) => {
     forwardedRef,
     id,
     handleEditorReady,
+    initialValue,
+    isSmoothCursorEnabled,
     mentionHandler,
     onChange,
     user,
-    value,
   } = props;
   const extensions: Extensions = useMemo(() => {
     const additionalExtensions: Extensions = [];
@@ -55,13 +55,9 @@ const DocumentEditor = (props: IDocumentEditorProps) => {
         disabledExtensions,
         embedConfig: embedHandler,
         flaggedExtensions,
-        isEditable: editable,
+        isEditable: true,
         fileHandler,
-        userDetails: user ?? {
-          id: "",
-          name: "",
-          color: "",
-        },
+        userDetails: user,
       })
     );
     return additionalExtensions;
@@ -69,7 +65,7 @@ const DocumentEditor = (props: IDocumentEditorProps) => {
 
   const editor = useEditor({
     disabledExtensions,
-    editable,
+    editable: true,
     editorClassName,
     enableHistory: true,
     extensions,
@@ -78,7 +74,8 @@ const DocumentEditor = (props: IDocumentEditorProps) => {
     forwardedRef,
     handleEditorReady,
     id,
-    initialValue: value,
+    initialValue,
+    isSmoothCursorEnabled,
     mentionHandler,
     onChange,
   });
@@ -100,7 +97,7 @@ const DocumentEditor = (props: IDocumentEditorProps) => {
   );
 };
 
-const DocumentEditorWithRef = forwardRef<EditorRefApi, IDocumentEditorProps>((props, ref) => (
+const DocumentEditorWithRef = forwardRef<EditorRefApi, IDocumentEditor>((props, ref) => (
   <DocumentEditor {...props} forwardedRef={ref as MutableRefObject<EditorRefApi | null>} />
 ));
 

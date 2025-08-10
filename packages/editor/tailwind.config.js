@@ -1,6 +1,6 @@
-import sharedConfig from "@plane/tailwind-config/tailwind.config.js";
+const sharedConfig = require("@plane/tailwind-config/tailwind.config.js");
 
-export default {
+module.exports = {
   // prefix ui lib classes to avoid conflicting with the app
   ...sharedConfig,
 };

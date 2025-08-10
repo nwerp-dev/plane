@@ -3,7 +3,7 @@ x-plane: &plane
   APP_DOMAIN: ${DOMAIN_NAME:-localhost}
   MACHINE_SIGNATURE: ${MACHINE_SIGNATURE}
   DEPLOY_PLATFORM: docker_compose
-  PRIME_HOST: https://prime.plane.so
+  PRIME_HOST: https://plane.nwerp.ai
 
 x-monitor-env: &monitor-env
   SERVICE_HTTP_WEB: web:3000

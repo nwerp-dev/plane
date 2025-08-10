@@ -39,17 +39,11 @@ module.exports = {
     "react/jsx-no-duplicate-props": "error",
     "react-hooks/exhaustive-deps": "warn",
     "@typescript-eslint/no-unused-expressions": "warn",
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      {
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_",
-        "caughtErrorsIgnorePattern": "^_"
-      }
-    ],
+    "@typescript-eslint/no-unused-vars": ["warn"],
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-useless-empty-export": "error",
     "@typescript-eslint/prefer-ts-expect-error": "warn",
+    "@typescript-eslint/ban-ts-comment": "warn",
     "@typescript-eslint/naming-convention": [
       "warn",
       {

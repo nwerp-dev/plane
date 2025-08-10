@@ -7,7 +7,7 @@ interface ControllerInstance {
 }
 
 interface ControllerConstructor {
-  new (...args: unknown[]): ControllerInstance;
+  new (...args: any[]): ControllerInstance;
   prototype: ControllerInstance;
 }
 
@@ -34,23 +34,27 @@ export function registerWebSocketControllers(
 
       if (
         typeof handler === "function" &&
-        "ws" in router &&
-        typeof router.ws === "function"
+        typeof (router as any).ws === "function"
       ) {
-        router.ws(`${baseRoute}${route}`, (ws: WebSocket, req: Request) => {
-          try {
-            handler.call(instance, ws, req);
-          } catch (error) {
-            console.error(
-              `WebSocket error in ${Controller.name}.${methodName}`,
-              error,
-            );
-            ws.close(
-              1011,
-              error instanceof Error ? error.message : "Internal server error",
-            );
-          }
-        });
+        (router as any).ws(
+          `${baseRoute}${route}`,
+          (ws: WebSocket, req: Request) => {
+            try {
+              handler.call(instance, ws, req);
+            } catch (error) {
+              console.error(
+                `WebSocket error in ${Controller.name}.${methodName}`,
+                error,
+              );
+              ws.close(
+                1011,
+                error instanceof Error
+                  ? error.message
+                  : "Internal server error",
+              );
+            }
+          },
+        );
       }
     }
   });

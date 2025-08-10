@@ -1,5 +1,5 @@
-import type { Editor, Range } from "@tiptap/core";
-import type { CSSProperties } from "react";
+import { CSSProperties } from "react";
+import { Editor, Range } from "@tiptap/core";
 // types
 import { TEditorCommands } from "@/types";
 

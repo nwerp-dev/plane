@@ -8,9 +8,7 @@ const meta: Meta<typeof Sortable> = {
 };
 
 export default meta;
-
-type StoryItem = { id: string; name: string };
-type Story = StoryObj<typeof Sortable<StoryItem>>;
+type Story = StoryObj<typeof Sortable>;
 
 const data = [
   { id: "1", name: "John Doe" },
@@ -22,12 +20,14 @@ const data = [
 export const Default: Story = {
   args: {
     data,
-    render: (item: StoryItem) => (
+    render: (item: any) => (
       // <Draggable data={item} className="rounded-lg">
       <div className="border ">{item.name}</div>
       // </Draggable>
     ),
-    onChange: (data) => console.log(data.map(({ id }) => id)),
-    keyExtractor: (item) => item.id,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onChange: (data) => console.log(data.map(({ id }: any) => id)),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    keyExtractor: (item: any) => item.id,
   },
 };

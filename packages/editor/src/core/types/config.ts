@@ -46,10 +46,3 @@ export type TRealtimeConfig = {
   url: string;
   queryParams: TWebhookConnectionQueryParams;
 };
-
-export type IMarking = {
-  type: "heading";
-  level: number;
-  text: string;
-  sequence: number;
-};
