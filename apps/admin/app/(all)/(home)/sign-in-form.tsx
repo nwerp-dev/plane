@@ -144,7 +144,7 @@ export const InstanceSignInForm: FC = () => {
             name="password"
             type={showPassword ? "text" : "password"}
             inputSize="md"
-            placeholder="Enter your password"
+            placeholder="Digite sua senha"
             value={formData.password}
             onChange={(e) => handleFormChange("password", e.target.value)}
             autoComplete="on"

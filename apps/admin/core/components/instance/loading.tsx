@@ -13,7 +13,7 @@ export const InstanceLoading = () => {
       <div className="w-auto max-w-2xl relative space-y-8 py-10">
         <div className="relative flex flex-col justify-center items-center space-y-4">
           <Image src={logoSrc} alt="logo" className="w-[82px] h-[82px] mr-2" priority={false} />
-          <h3 className="font-medium text-2xl text-white ">Fetching instance details...</h3>
+          <h3 className="font-medium text-2xl text-white ">Buscando detalhes da instância...</h3>
         </div>
       </div>
     </div>

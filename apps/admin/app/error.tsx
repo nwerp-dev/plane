@@ -3,7 +3,7 @@
 export default function RootErrorPage() {
   return (
     <div>
-      <p>Something went wrong.</p>
+      <p>Algo deu errado.</p>
     </div>
   );
 }

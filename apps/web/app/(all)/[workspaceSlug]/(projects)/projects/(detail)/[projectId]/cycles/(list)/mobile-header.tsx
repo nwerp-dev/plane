@@ -17,17 +17,17 @@ const CYCLE_VIEW_LAYOUTS: {
   {
     key: "list",
     icon: List,
-    title: "List layout",
+    title: "Layout de lista",
   },
   {
     key: "board",
     icon: LayoutGrid,
-    title: "Gallery layout",
+    title: "Layout de galeria",
   },
   {
     key: "gantt",
     icon: GanttChartSquare,
-    title: "Timeline layout",
+    title: "Layout de timeline",
   },
 ];
 

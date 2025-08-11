@@ -32,8 +32,8 @@ export const CopyField: React.FC<Props> = (props) => {
           navigator.clipboard.writeText(url);
           setToast({
             type: TOAST_TYPE.INFO,
-            title: "Copied to clipboard",
-            message: `The ${label} has been successfully copied to your clipboard`,
+            title: "Copiado para a área de transferência",
+            message: `O ${label} foi copiado com sucesso para a área de transferência`,
           });
         }}
       >

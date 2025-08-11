@@ -39,30 +39,30 @@ export const getAuthenticationModes: (props: TGetBaseAuthenticationModeProps) =>
 }) => [
   {
     key: "unique-codes",
-    name: "Unique codes",
+    name: "Códigos únicos",
     description:
-      "Log in or sign up for Plane using codes sent via email. You need to have set up SMTP to use this method.",
+      "Entre ou cadastre-se no NWERP usando códigos enviados por e-mail. É necessário configurar o SMTP para usar este método.",
     icon: <Mails className="h-6 w-6 p-0.5 text-custom-text-300/80" />,
     config: <EmailCodesConfiguration disabled={disabled} updateConfig={updateConfig} />,
   },
   {
     key: "passwords-login",
-    name: "Passwords",
-    description: "Allow members to create accounts with passwords and use it with their email addresses to sign in.",
+    name: "Senhas",
+    description: "Permitir que membros criem contas com senhas e usem junto ao e-mail para entrar.",
     icon: <KeyRound className="h-6 w-6 p-0.5 text-custom-text-300/80" />,
     config: <PasswordLoginConfiguration disabled={disabled} updateConfig={updateConfig} />,
   },
   {
     key: "google",
     name: "Google",
-    description: "Allow members to log in or sign up for Plane with their Google accounts.",
+    description: "Permitir que membros entrem ou se cadastrem no NWERP com suas contas Google.",
     icon: <Image src={GoogleLogo} height={20} width={20} alt="Google Logo" />,
     config: <GoogleConfiguration disabled={disabled} updateConfig={updateConfig} />,
   },
   {
     key: "github",
     name: "GitHub",
-    description: "Allow members to log in or sign up for Plane with their GitHub accounts.",
+    description: "Permitir que membros entrem ou se cadastrem no NWERP com suas contas GitHub.",
     icon: (
       <Image
         src={resolveGeneralTheme(resolvedTheme) === "dark" ? githubDarkModeImage : githubLightModeImage}
@@ -76,14 +76,14 @@ export const getAuthenticationModes: (props: TGetBaseAuthenticationModeProps) =>
   {
     key: "gitlab",
     name: "GitLab",
-    description: "Allow members to log in or sign up to plane with their GitLab accounts.",
+    description: "Permitir que membros entrem ou se cadastrem no NWERP com suas contas GitLab.",
     icon: <Image src={GitlabLogo} height={20} width={20} alt="GitLab Logo" />,
     config: <GitlabConfiguration disabled={disabled} updateConfig={updateConfig} />,
   },
   {
     key: "oidc",
     name: "OIDC",
-    description: "Authenticate your users via the OpenID Connect protocol.",
+    description: "Autentique seus usuários via o protocolo OpenID Connect.",
     icon: <Image src={OIDCLogo} height={22} width={22} alt="OIDC Logo" />,
     config: <UpgradeButton />,
     unavailable: true,
@@ -91,7 +91,7 @@ export const getAuthenticationModes: (props: TGetBaseAuthenticationModeProps) =>
   {
     key: "saml",
     name: "SAML",
-    description: "Authenticate your users via the Security Assertion Markup Language protocol.",
+    description: "Autentique seus usuários via o protocolo Security Assertion Markup Language.",
     icon: <Image src={SAMLLogo} height={22} width={22} alt="SAML Logo" className="pl-0.5" />,
     config: <UpgradeButton />,
     unavailable: true,

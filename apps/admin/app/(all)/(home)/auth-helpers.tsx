@@ -31,56 +31,57 @@ const errorCodeMessages: {
 } = {
   // admin
   [EAdminAuthErrorCodes.ADMIN_ALREADY_EXIST]: {
-    title: `Admin already exists`,
-    message: () => `Admin already exists. Please try again.`,
+    title: `Administrador já existe`,
+    message: () => `O administrador já existe. Tente novamente.`,
   },
   [EAdminAuthErrorCodes.REQUIRED_ADMIN_EMAIL_PASSWORD_FIRST_NAME]: {
-    title: `Email, password and first name required`,
-    message: () => `Email, password and first name required. Please try again.`,
+    title: `E-mail, senha e nome são obrigatórios`,
+    message: () => `E-mail, senha e nome são obrigatórios. Tente novamente.`,
   },
   [EAdminAuthErrorCodes.INVALID_ADMIN_EMAIL]: {
-    title: `Invalid admin email`,
-    message: () => `Invalid admin email. Please try again.`,
+    title: `E-mail do administrador inválido`,
+    message: () => `E-mail do administrador inválido. Tente novamente.`,
   },
   [EAdminAuthErrorCodes.INVALID_ADMIN_PASSWORD]: {
-    title: `Invalid admin password`,
-    message: () => `Invalid admin password. Please try again.`,
+    title: `Senha do administrador inválida`,
+    message: () => `Senha do administrador inválida. Tente novamente.`,
   },
   [EAdminAuthErrorCodes.REQUIRED_ADMIN_EMAIL_PASSWORD]: {
-    title: `Email and password required`,
-    message: () => `Email and password required. Please try again.`,
+    title: `E-mail e senha obrigatórios`,
+    message: () => `E-mail e senha obrigatórios. Tente novamente.`,
   },
   [EAdminAuthErrorCodes.ADMIN_AUTHENTICATION_FAILED]: {
-    title: `Authentication failed`,
-    message: () => `Authentication failed. Please try again.`,
+    title: `Falha na autenticação`,
+    message: () => `Falha na autenticação. Tente novamente.`,
   },
   [EAdminAuthErrorCodes.ADMIN_USER_ALREADY_EXIST]: {
-    title: `Admin user already exists`,
+    title: `Usuário administrador já existe`,
     message: () => (
       <div>
-        Admin user already exists.&nbsp;
+        Usuário administrador já existe.&nbsp;
         <Link className="underline underline-offset-4 font-medium hover:font-bold transition-all" href={`/admin`}>
-          Sign In
+          Entrar
         </Link>
-        &nbsp;now.
+        &nbsp;agora.
       </div>
     ),
   },
   [EAdminAuthErrorCodes.ADMIN_USER_DOES_NOT_EXIST]: {
-    title: `Admin user does not exist`,
+    title: `Usuário administrador não existe`,
     message: () => (
       <div>
-        Admin user does not exist.&nbsp;
+        Usuário administrador não existe.&nbsp;
         <Link className="underline underline-offset-4 font-medium hover:font-bold transition-all" href={`/admin`}>
-          Sign In
+          Entrar
         </Link>
-        &nbsp;now.
+        &nbsp;agora.
       </div>
     ),
   },
   [EAdminAuthErrorCodes.ADMIN_USER_DEACTIVATED]: {
-    title: `User account deactivated`,
-    message: () => `User account deactivated. Please contact ${!!SUPPORT_EMAIL ? SUPPORT_EMAIL : "administrator"}.`,
+    title: `Conta de usuário desativada`,
+    message: () =>
+      `Conta de usuário desativada. Entre em contato com ${!!SUPPORT_EMAIL ? SUPPORT_EMAIL : "o administrador"}.`,
   },
 };
 
@@ -104,8 +105,8 @@ export const authErrorHandler = (
     return {
       type: EErrorAlertType.BANNER_ALERT,
       code: errorCode,
-      title: errorCodeMessages[errorCode]?.title || "Error",
-      message: errorCodeMessages[errorCode]?.message(email) || "Something went wrong. Please try again.",
+      title: errorCodeMessages[errorCode]?.title || "Erro",
+      message: errorCodeMessages[errorCode]?.message(email) || "Algo deu errado. Tente novamente.",
     };
 
   return undefined;
@@ -118,36 +119,36 @@ export const getBaseAuthenticationModes: (props: TGetBaseAuthenticationModeProps
 }) => [
   {
     key: "unique-codes",
-    name: "Unique codes",
+    name: "Códigos únicos",
     description:
-      "Log in or sign up for Plane using codes sent via email. You need to have set up SMTP to use this method.",
+      "Entre ou cadastre-se no NWERP usando códigos enviados por e-mail. É necessário configurar o SMTP para usar este método.",
     icon: <Mails className="h-6 w-6 p-0.5 text-custom-text-300/80" />,
     config: <EmailCodesConfiguration disabled={disabled} updateConfig={updateConfig} />,
   },
   {
     key: "passwords-login",
-    name: "Passwords",
-    description: "Allow members to create accounts with passwords and use it with their email addresses to sign in.",
+    name: "Senhas",
+    description: "Permitir que membros criem contas com senhas e usem junto ao e-mail para entrar.",
     icon: <KeyRound className="h-6 w-6 p-0.5 text-custom-text-300/80" />,
     config: <PasswordLoginConfiguration disabled={disabled} updateConfig={updateConfig} />,
   },
   {
     key: "google",
     name: "Google",
-    description: "Allow members to log in or sign up for Plane with their Google accounts.",
-    icon: <Image src={GoogleLogo} height={20} width={20} alt="Google Logo" />,
+    description: "Permitir que membros entrem ou se cadastrem no NWERP com suas contas Google.",
+    icon: <Image src={GoogleLogo} height={20} width={20} alt="Logo Google" />,
     config: <GoogleConfiguration disabled={disabled} updateConfig={updateConfig} />,
   },
   {
     key: "github",
     name: "GitHub",
-    description: "Allow members to log in or sign up for Plane with their GitHub accounts.",
+    description: "Permitir que membros entrem ou se cadastrem no NWERP com suas contas GitHub.",
     icon: (
       <Image
         src={resolveGeneralTheme(resolvedTheme) === "dark" ? githubDarkModeImage : githubLightModeImage}
         height={20}
         width={20}
-        alt="GitHub Logo"
+        alt="Logo GitHub"
       />
     ),
     config: <GithubConfiguration disabled={disabled} updateConfig={updateConfig} />,
@@ -155,8 +156,8 @@ export const getBaseAuthenticationModes: (props: TGetBaseAuthenticationModeProps
   {
     key: "gitlab",
     name: "GitLab",
-    description: "Allow members to log in or sign up to plane with their GitLab accounts.",
-    icon: <Image src={GitlabLogo} height={20} width={20} alt="GitLab Logo" />,
+    description: "Permitir que membros entrem ou se cadastrem no NWERP com suas contas GitLab.",
+    icon: <Image src={GitlabLogo} height={20} width={20} alt="Logo GitLab" />,
     config: <GitlabConfiguration disabled={disabled} updateConfig={updateConfig} />,
   },
 ];

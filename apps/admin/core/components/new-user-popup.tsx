@@ -25,17 +25,17 @@ export const NewUserPopup: React.FC = observer(() => {
     <div className="absolute bottom-8 right-8 p-6 w-96 border border-custom-border-100 shadow-md rounded-lg bg-custom-background-100">
       <div className="flex gap-4">
         <div className="grow">
-          <div className="text-base font-semibold">Create workspace</div>
+          <div className="text-base font-semibold">Criar espaço de trabalho</div>
           <div className="py-2 text-sm font-medium text-custom-text-300">
-            Instance setup done! Welcome to Plane instance portal. Start your journey with by creating your first
-            workspace.
+            Configuração da instância concluída! Bem-vindo ao portal da instância NWERP. Comece sua jornada criando seu
+            primeiro espaço de trabalho.
           </div>
           <div className="flex items-center gap-4 pt-2">
             <Link href="/workspace/create" className={getButtonStyling("primary", "sm")}>
-              Create workspace
+              Criar espaço de trabalho
             </Link>
             <Button variant="neutral-primary" size="sm" onClick={toggleNewUserPopup}>
-              Close
+              Fechar
             </Button>
           </div>
         </div>

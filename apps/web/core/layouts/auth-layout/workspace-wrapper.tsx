@@ -126,8 +126,8 @@ export const WorkspaceAuthWrapper: FC<IWorkspaceAuthWrapper> = observer((props) 
     await signOut().catch(() =>
       setToast({
         type: TOAST_TYPE.ERROR,
-        title: "Error!",
-        message: "Failed to sign out. Please try again.",
+        title: "Erro!",
+        message: "Falha ao sair. Por favor, tente novamente.",
       })
     );
   };
@@ -168,9 +168,9 @@ export const WorkspaceAuthWrapper: FC<IWorkspaceAuthWrapper> = observer((props) 
             <div className="relative flex-shrink-0">
               <Image src={WorkSpaceNotAvailable} className="h-[220px] object-contain object-center" alt="Plane logo" />
             </div>
-            <h3 className="text-center text-lg font-semibold">Workspace not found</h3>
+            <h3 className="text-center text-lg font-semibold">Workspace não encontrado</h3>
             <p className="text-center text-sm text-custom-text-200">
-              No workspace found with the URL. It may not exist or you lack authorization to view it.
+              Nenhum workspace encontrado com esta URL. Ele pode não existir ou você não tem autorização para visualizá-lo.
             </p>
             <div className="flex items-center justify-center gap-2 pt-4">
               {allWorkspaces && allWorkspaces.length > 0 && (
@@ -188,7 +188,7 @@ export const WorkspaceAuthWrapper: FC<IWorkspaceAuthWrapper> = observer((props) 
               )}
               {allWorkspaces && allWorkspaces.length === 0 && (
                 <Link href={`/`} className={cn(getButtonStyling("neutral-primary", "md"))}>
-                  Create new workspace
+                  Criar novo workspace
                 </Link>
               )}
             </div>
@@ -207,24 +207,23 @@ export const WorkspaceAuthWrapper: FC<IWorkspaceAuthWrapper> = observer((props) 
         <div className="grid h-full place-items-center p-4">
           <div className="space-y-8 text-center">
             <div className="space-y-2">
-              <h3 className="text-lg font-semibold">Not Authorized!</h3>
+              <h3 className="text-lg font-semibold">Não autorizado!</h3>
               <p className="mx-auto w-1/2 text-sm text-custom-text-200">
-                You{"'"}re not a member of this workspace. Please contact the workspace admin to get an invitation or
-                check your pending invitations.
+                Você não é um membro deste workspace. Por favor, entre em contato com o administrador do workspace para obter um convite ou ver seus convites pendentes.
               </p>
             </div>
             <div className="flex items-center justify-center gap-2">
               <Link href="/invitations">
                 <span>
                   <Button variant="neutral-primary" size="sm">
-                    Check pending invites
+                    Ver convites pendentes
                   </Button>
                 </span>
               </Link>
               <Link href="/create-workspace">
                 <span>
                   <Button variant="primary" size="sm">
-                    Create new workspace
+                    Criar novo workspace
                   </Button>
                 </span>
               </Link>

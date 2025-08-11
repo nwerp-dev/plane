@@ -44,20 +44,20 @@ export const WorkspaceListItem = observer(({ workspaceId }: TWorkspaceListItemPr
         <div className="flex flex-col items-start gap-1">
           <div className="flex flex-wrap w-full items-center gap-2.5">
             <h3 className={`text-base font-medium capitalize`}>{workspace.name}</h3>/
-            <Tooltip tooltipContent="The unique URL of your workspace">
+            <Tooltip tooltipContent="O URL único do seu espaço de trabalho">
               <h4 className="text-sm text-custom-text-300">[{workspace.slug}]</h4>
             </Tooltip>
           </div>
           {workspace.owner.email && (
             <div className="flex items-center gap-1 text-xs">
-              <h3 className="text-custom-text-200 font-medium">Owned by:</h3>
+              <h3 className="text-custom-text-200 font-medium">Dono:</h3>
               <h4 className="text-custom-text-300">{workspace.owner.email}</h4>
             </div>
           )}
           <div className="flex items-center gap-2.5 text-xs">
             {workspace.total_projects !== null && (
               <span className="flex items-center gap-1">
-                <h3 className="text-custom-text-200 font-medium">Total projects:</h3>
+                <h3 className="text-custom-text-200 font-medium">Total de projetos:</h3>
                 <h4 className="text-custom-text-300">{workspace.total_projects}</h4>
               </span>
             )}
@@ -65,7 +65,7 @@ export const WorkspaceListItem = observer(({ workspaceId }: TWorkspaceListItemPr
               <>
                 •
                 <span className="flex items-center gap-1">
-                  <h3 className="text-custom-text-200 font-medium">Total members:</h3>
+                  <h3 className="text-custom-text-200 font-medium">Total de membros:</h3>
                   <h4 className="text-custom-text-300">{workspace.total_members}</h4>
                 </span>
               </>

@@ -14,7 +14,7 @@ export const InstanceNotReady: FC = () => (
         <h1 className="text-3xl font-bold pb-3">Welcome aboard Plane!</h1>
         <Image src={PlaneTakeOffImage} alt="Plane Logo" />
         <p className="font-medium text-base text-onboarding-text-400">
-          Get started by setting up your instance and workspace
+          Comece configurando sua instância e espaço de trabalho
         </p>
       </div>
 

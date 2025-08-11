@@ -50,7 +50,7 @@ const ProfileActivityPage = observer(() => {
 
   return (
     <>
-      <PageHead title="Profile - Activity" />
+      <PageHead title="Perfil - Atividade" />
       <div className="flex h-full w-full flex-col overflow-hidden py-5">
         <div className="flex items-center justify-between gap-2 px-5 md:px-9">
           <h3 className="text-lg font-medium">{t("profile.stats.recent_activity.title")}</h3>

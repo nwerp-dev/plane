@@ -6,17 +6,17 @@ import { ADMIN_BASE_PATH } from "@plane/constants";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "Plane | Simple, extensible, open-source project management tool.",
+  title: "NWERP | Plataforma integrada para gestão e orquestração de processos de negócio",
   description:
-    "Open-source project management tool to manage work items, sprints, and product roadmaps with peace of mind.",
+    "Plataforma integrada para orquestração de processos de negócio, sincronização de dados ERP e gestão de fluxos operacionais em tempo real.",
   openGraph: {
-    title: "Plane | Simple, extensible, open-source project management tool.",
+    title: "NWERP | Plataforma integrada para gestão e orquestração de processos de negócio",
     description:
-      "Open-source project management tool to manage work items, sprints, and product roadmaps with peace of mind.",
-    url: "https://plane.so/",
+      "Plataforma integrada para orquestração de processos de negócio, sincronização de dados ERP e gestão de fluxos operacionais em tempo real.",
+    url: "https://plane.nwerp.ai/",
   },
   keywords:
-    "software development, customer feedback, software, accelerate, code management, release management, project management, work items tracking, agile, scrum, kanban, collaboration",
+    "desenvolvimento de software, feedback do cliente, software, acelerar, gerenciamento de código, gerenciamento de releases, gerenciamento de projetos, rastreamento de itens de trabalho, agile, scrum, kanban, colaboração",
   twitter: {
     site: "@planepowers",
   },

@@ -135,10 +135,10 @@ export const InstanceSetupForm: FC = (props) => {
       <div className="relative flex flex-col space-y-6">
         <div className="text-center space-y-1">
           <h3 className="flex gap-4 justify-center text-3xl font-bold text-onboarding-text-100">
-            Setup your Plane Instance
+            Configurar sua instância NWERP
           </h3>
           <p className="font-medium text-onboarding-text-400">
-            Post setup you will be able to manage this Plane instance.
+            Após a configuração, você poderá gerenciar esta instância NWERP.
           </p>
         </div>
 
@@ -332,16 +332,16 @@ export const InstanceSetupForm: FC = (props) => {
               className="text-sm text-onboarding-text-300 font-medium cursor-pointer"
               htmlFor="is_telemetry_enabled"
             >
-              Allow Plane to anonymously collect usage events.
+              Permitir que a NWERP colete eventos de uso de forma anônima.
             </label>
             <a
               tabIndex={-1}
-              href="https://developers.plane.so/self-hosting/telemetry"
+              href="https://developers.nwerp.ai/self-hosting/telemetry"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-blue-500 hover:text-blue-600"
             >
-              See More
+              Ver mais
             </a>
           </div>
 
