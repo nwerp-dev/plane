@@ -14,7 +14,7 @@ export const SUPPORTED_LANGUAGES: ILanguageOption[] = [
 export enum ETranslationFiles {
   TRANSLATIONS = "translations",
   ACCESSIBILITY = "accessibility",
-  EDITOR = "editor",
+  EDITOR = "editor"
 }
 
 export const LANGUAGE_STORAGE_KEY = "userLanguage";

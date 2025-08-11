@@ -19,21 +19,20 @@ const ProjectSettingsPage = () => {
   return (
     <div className="flex flex-col gap-4 items-center justify-center h-full max-w-[480px] mx-auto">
       <Image src={resolvedPath} alt="No projects yet" width={384} height={250} />
-      <div className="text-lg font-semibold text-custom-text-350">No projects yet</div>
+      <div className="text-lg font-semibold text-custom-text-350">Nenhum projeto ainda</div>
       <div className="text-sm text-custom-text-350 text-center">
-        Projects act as the foundation for goal-driven work. They let you manage your teams, tasks, and everything you
-        need to get things done.
+        Projetos são a base para o trabalho orientado a objetivos. Eles permitem que você gerencie suas equipes, tarefas e tudo o que você precisa para fazer as coisas.
       </div>
       <div className="flex gap-2">
         <Link href="https://plane.so/" target="_blank" className={cn(getButtonStyling("neutral-primary", "sm"))}>
-          Learn more about projects
+          Saiba mais sobre projetos
         </Link>
         <Button
           size="sm"
           onClick={() => toggleCreateProjectModal(true)}
           data-ph-element={PROJECT_TRACKER_ELEMENTS.EMPTY_STATE_CREATE_PROJECT_BUTTON}
         >
-          Start your first project
+          Começar seu primeiro projeto
         </Button>
       </div>
     </div>

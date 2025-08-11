@@ -4,8 +4,9 @@ import merge from "lodash/merge";
 import { makeAutoObservable, runInAction } from "mobx";
 // constants
 import { FALLBACK_LANGUAGE, SUPPORTED_LANGUAGES, LANGUAGE_STORAGE_KEY, ETranslationFiles } from "../constants";
-// core translations imports
-import coreEn from "../locales/en/core.json";
+  // core translations imports
+import coreEn from "../locales/en/core.json"; 
+import corePtBr from "../locales/pt-BR/core.json";
 // types
 import { TLanguage, ILanguageOption, ITranslations } from "../types";
 
@@ -18,6 +19,7 @@ export class TranslationStore {
   // Core translations that are always loaded
   private coreTranslations: ITranslations = {
     en: coreEn,
+    "pt-BR": corePtBr,
   };
   // List of translations for each language
   private translations: ITranslations = {};

@@ -46,14 +46,14 @@ const HomePage = observer(() => {
               <Image
                 src={resolvedTheme === "dark" ? PlaneBackgroundPatternDark : PlaneBackgroundPattern}
                 className="object-cover w-full h-full"
-                alt="Plane background pattern"
+                alt="NWERP background pattern"
               />
             </div>
             <div className="relative z-10 flex flex-col w-screen h-screen overflow-hidden overflow-y-auto">
               <div className="container relative flex items-center justify-between flex-shrink-0 min-w-full px-10 pb-4 transition-all lg:px-20 xl:px-36">
                 <div className="flex items-center py-10 gap-x-2">
                   <Link href={`/`} className="h-[30px] w-[133px]">
-                    <Image src={logo} alt="Plane logo" />
+                    <Image src={logo} alt="NWERP logo" />
                   </Link>
                 </div>
                 {enableSignUpConfig && (
