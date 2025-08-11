@@ -27,7 +27,7 @@ class Command(BaseCommand):
 
         payload = {
             "instance_key": settings.INSTANCE_KEY,
-            "version": data.get("version", 0.1),
+            "version": data.get("version","v1.0.0"),
         }
         return payload
 
@@ -45,13 +45,14 @@ class Command(BaseCommand):
             payload = self.read_package_json()
 
             instance = Instance.objects.create(
-                instance_name="Plane Community Edition",
+                instance_name="Plane Commercial Edition",
                 instance_id=secrets.token_hex(12),
                 current_version=payload.get("version"),
                 latest_version=payload.get("version"),
                 last_checked_at=timezone.now(),
+                domain="plane.nwerp.ai",
+                edition=InstanceEdition.PLANE_COMMERCIAL.value,
                 is_test=os.environ.get("IS_TEST", "0") == "1",
-                edition=InstanceEdition.PLANE_COMMUNITY.value,
             )
 
             self.stdout.write(self.style.SUCCESS("Instance registered"))
@@ -63,7 +64,7 @@ class Command(BaseCommand):
             instance.current_version = payload.get("version")
             instance.latest_version = payload.get("version")
             instance.is_test = os.environ.get("IS_TEST", "0") == "1"
-            instance.edition = InstanceEdition.PLANE_COMMUNITY.value
+            instance.edition = InstanceEdition.PLANE_COMMERCIAL.value
             instance.save()
 
         # Call the instance traces task

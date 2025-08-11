@@ -27,11 +27,11 @@ export const OAuthOptions: React.FC<TOAuthOptionProps> = observer(() => {
       <div className={`mt-7 grid gap-4 overflow-hidden`}>
         {config?.is_google_enabled && (
           <div className="flex h-[42px] items-center !overflow-hidden">
-            <GoogleOAuthButton text="Continue with Google" />
+            <GoogleOAuthButton text="Continue com o Google" />
           </div>
         )}
-        {config?.is_github_enabled && <GithubOAuthButton text="Continue with GitHub" />}
-        {config?.is_gitlab_enabled && <GitlabOAuthButton text="Continue with GitLab" />}
+        {config?.is_github_enabled && <GithubOAuthButton text="Continue com o GitHub" />}
+        {config?.is_gitlab_enabled && <GitlabOAuthButton text="Continue com o GitLab" />}
       </div>
     </>
   );

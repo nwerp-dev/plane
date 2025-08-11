@@ -10,7 +10,6 @@ import {
   AuthEmailForm,
   AuthPasswordForm,
   OAuthOptions,
-  TermsAndConditions,
   AuthUniqueCodeForm,
 } from "@/components/account";
 // helpers
@@ -197,7 +196,7 @@ export const AuthRoot: FC<TAuthRoot> = observer((props) => {
           />
         )}
         <OAuthOptions isSignUp={authMode === EAuthModes.SIGN_UP} />
-        <TermsAndConditions isSignUp={authMode === EAuthModes.SIGN_UP} />
+        {/* <TermsAndConditions isSignUp={authMode === EAuthModes.SIGN_UP} /> */}
       </AuthHeader>
     </div>
   );

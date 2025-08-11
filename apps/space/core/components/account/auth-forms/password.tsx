@@ -204,7 +204,7 @@ export const AuthPasswordForm: React.FC<Props> = observer((props: Props) => {
           </div>
           {!!passwordFormData.confirm_password &&
             passwordFormData.password !== passwordFormData.confirm_password &&
-            renderPasswordMatchError && <span className="text-sm text-red-500">Passwords don{"'"}t match</span>}
+            renderPasswordMatchError && <span className="text-sm text-red-500">As senhas não correspondem</span>}
         </div>
       )}
 
@@ -215,9 +215,9 @@ export const AuthPasswordForm: React.FC<Props> = observer((props: Props) => {
               {isSubmitting ? (
                 <Spinner height="20px" width="20px" />
               ) : isSMTPConfigured ? (
-                "Continue"
+                "Continuar"
               ) : (
-                "Go to workspace"
+                "Ir para o workspace"
               )}
             </Button>
             {isSMTPConfigured && (
@@ -228,13 +228,13 @@ export const AuthPasswordForm: React.FC<Props> = observer((props: Props) => {
                 className="w-full"
                 size="lg"
               >
-                Sign in with unique code
+                Entrar com código único
               </Button>
             )}
           </>
         ) : (
           <Button type="submit" variant="primary" className="w-full" size="lg" disabled={isButtonDisabled}>
-            {isSubmitting ? <Spinner height="20px" width="20px" /> : "Create account"}
+            {isSubmitting ? <Spinner height="20px" width="20px" /> : "Criar conta"}
           </Button>
         )}
       </div>
