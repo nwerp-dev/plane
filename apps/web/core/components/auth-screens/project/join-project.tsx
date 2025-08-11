@@ -41,14 +41,14 @@ export const JoinProject: React.FC<Props> = (props) => {
         <Image src={Unauthorized} height="176" width="288" alt="JoinProject" />
       </div>
       <h1 className="text-xl font-medium text-custom-text-100">
-        {!isPrivateProject ? `You are not a member of this project yet.` : `You are not a member of this project.`}
+        {!isPrivateProject ? `Você não é membro deste projeto ainda.` : `Você não é membro deste projeto.`}
       </h1>
 
       <div className="w-full max-w-md text-base text-custom-text-200">
         <p className="mx-auto w-full text-sm md:w-3/4">
           {!isPrivateProject
-            ? `Click the button below to join it.`
-            : `This is a private project. \n We can't tell you more about this project to protect confidentiality.`}
+            ? `Clique no botão abaixo para entrar.`
+            : `Este é um projeto privado. \n Não podemos te contar mais sobre este projeto para proteger a confidencialidade.`}
         </p>
       </div>
       {!isPrivateProject && (
@@ -59,7 +59,7 @@ export const JoinProject: React.FC<Props> = (props) => {
             loading={isJoiningProject}
             onClick={handleJoin}
           >
-            {isJoiningProject ? "Taking you in" : "Click to join"}
+            {isJoiningProject ? "Entrando..." : "Clique para entrar"}
           </Button>
         </div>
       )}

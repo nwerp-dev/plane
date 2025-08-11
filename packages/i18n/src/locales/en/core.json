@@ -1,169 +1,168 @@
 {
   "sidebar": {
-    "projects": "Projects",
-    "pages": "Pages",
-    "new_work_item": "New work item",
-    "home": "Home",
-    "your_work": "Your work",
-    "inbox": "Inbox",
-    "workspace": "Workspace",
-    "views": "Views",
-    "analytics": "Analytics",
-    "work_items": "Work items",
-    "cycles": "Cycles",
-    "modules": "Modules",
-    "intake": "Intake",
-    "drafts": "Drafts",
-    "favorites": "Favorites",
+    "projects": "Projetos",
+    "pages": "Páginas",
+    "new_work_item": "Novo item de trabalho",
+    "home": "Início",
+    "your_work": "Seu trabalho",
+    "inbox": "Caixa de entrada",
+    "workspace": "Espaço de trabalho",
+    "views": "Visualizações",
+    "analytics": "Análises",
+    "work_items": "Itens de trabalho",
+    "cycles": "Ciclos",
+    "modules": "Módulos",
+    "intake": "Entrada",
+    "drafts": "Rascunhos",
+    "favorites": "Favoritos",
     "pro": "Pro",
-    "upgrade": "Upgrade"
+    "upgrade": "Atualizar"
   },
-
   "auth": {
     "common": {
       "email": {
-        "label": "Email",
-        "placeholder": "name@company.com",
+        "label": "E-mail",
+        "placeholder": "nome@empresa.com",
         "errors": {
-          "required": "Email is required",
-          "invalid": "Email is invalid"
+          "required": "E-mail é obrigatório",
+          "invalid": "E-mail inválido"
         }
       },
       "password": {
-        "label": "Password",
-        "set_password": "Set a password",
-        "placeholder": "Enter password",
+        "label": "Senha",
+        "set_password": "Definir senha",
+        "placeholder": "Digite a senha",
         "confirm_password": {
-          "label": "Confirm password",
-          "placeholder": "Confirm password"
+          "label": "Confirmar senha",
+          "placeholder": "Confirme a senha"
         },
         "current_password": {
-          "label": "Current password"
+          "label": "Senha atual"
         },
         "new_password": {
-          "label": "New password",
-          "placeholder": "Enter new password"
+          "label": "Nova senha",
+          "placeholder": "Digite a nova senha"
         },
         "change_password": {
           "label": {
-            "default": "Change password",
-            "submitting": "Changing password"
+            "default": "Alterar senha",
+            "submitting": "Alterando senha"
           }
         },
         "errors": {
-          "match": "Passwords don't match",
-          "empty": "Please enter your password",
-          "length": "Password length should me more than 8 characters",
+          "match": "As senhas não correspondem",
+          "empty": "Por favor, insira sua senha",
+          "length": "O tamanho da senha deve ser maior que 8 caracteres",
           "strength": {
-            "weak": "Password is weak",
-            "strong": "Password is strong"
+            "weak": "Senha fraca",
+            "strong": "Senha forte"
           }
         },
-        "submit": "Set password",
+        "submit": "Definir senha",
         "toast": {
           "change_password": {
             "success": {
-              "title": "Success!",
-              "message": "Password changed successfully."
+              "title": "Sucesso!",
+              "message": "Senha alterada com sucesso."
             },
             "error": {
-              "title": "Error!",
-              "message": "Something went wrong. Please try again."
+              "title": "Erro!",
+              "message": "Algo deu errado. Por favor, tente novamente."
             }
           }
         }
       },
       "unique_code": {
-        "label": "Unique code",
+        "label": "Código único",
         "placeholder": "gets-sets-flys",
-        "paste_code": "Paste the code sent to your email",
-        "requesting_new_code": "Requesting new code",
-        "sending_code": "Sending code"
+        "paste_code": "Cole o código enviado para seu e-mail",
+        "requesting_new_code": "Solicitando novo código",
+        "sending_code": "Enviando código"
       },
-      "already_have_an_account": "Already have an account?",
-      "login": "Log in",
-      "create_account": "Create an account",
-      "new_to_plane": "New to Plane?",
-      "back_to_sign_in": "Back to sign in",
-      "resend_in": "Resend in {seconds} seconds",
-      "sign_in_with_unique_code": "Sign in with unique code",
-      "forgot_password": "Forgot your password?"
+      "already_have_an_account": "Já tem uma conta?",
+      "login": "Entrar",
+      "create_account": "Criar conta",
+      "new_to_plane": "Novo no Plane?",
+      "back_to_sign_in": "Voltar para o login",
+      "resend_in": "Reenviar em {seconds} segundos",
+      "sign_in_with_unique_code": "Entrar com código único",
+      "forgot_password": "Esqueceu sua senha?"
     },
     "sign_up": {
       "header": {
-        "label": "Create an account to start managing work with your team.",
+        "label": "Crie uma conta para começar a gerenciar o trabalho com sua equipe.",
         "step": {
           "email": {
-            "header": "Sign up",
+            "header": "Inscrever-se",
             "sub_header": ""
           },
           "password": {
-            "header": "Sign up",
-            "sub_header": "Sign up using an email-password combination."
+            "header": "Inscrever-se",
+            "sub_header": "Cadastre-se usando combinação de e-mail e senha."
           },
           "unique_code": {
-            "header": "Sign up",
-            "sub_header": "Sign up using a unique code sent to the email address above."
+            "header": "Inscrever-se",
+            "sub_header": "Cadastre-se usando um código único enviado ao e-mail acima."
           }
         }
       },
       "errors": {
         "password": {
-          "strength": "Try setting-up a strong password to proceed"
+          "strength": "Tente definir uma senha forte para prosseguir"
         }
       }
     },
     "sign_in": {
       "header": {
-        "label": "Log in to start managing work with your team.",
+        "label": "Faça login para começar a gerenciar o trabalho com sua equipe.",
         "step": {
           "email": {
-            "header": "Log in or sign up",
+            "header": "Entrar ou cadastrar-se",
             "sub_header": ""
           },
           "password": {
-            "header": "Log in or sign up",
-            "sub_header": "Use your email-password combination to log in."
+            "header": "Entrar ou cadastrar-se",
+            "sub_header": "Use sua combinação de e-mail e senha para entrar."
           },
           "unique_code": {
-            "header": "Log in or sign up",
-            "sub_header": "Log in using a unique code sent to the email address above."
+            "header": "Entrar ou cadastrar-se",
+            "sub_header": "Entre usando um código único enviado ao e-mail acima."
           }
         }
       }
     },
     "forgot_password": {
-      "title": "Reset your password",
-      "description": "Enter your user account's verified email address and we will send you a password reset link.",
-      "email_sent": "We sent the reset link to your email address",
-      "send_reset_link": "Send reset link",
+      "title": "Redefinir sua senha",
+      "description": "Digite o endereço de e-mail verificado da sua conta e enviaremos um link para redefinir a senha.",
+      "email_sent": "Enviamos o link para o seu e-mail",
+      "send_reset_link": "Enviar link de redefinição",
       "errors": {
-        "smtp_not_enabled": "We see that your god hasn't enabled SMTP, we will not be able to send a password reset link"
+        "smtp_not_enabled": "Notamos que seu SMTP não está habilitado, não poderemos enviar um link de redefinição de senha."
       },
       "toast": {
         "success": {
-          "title": "Email sent",
-          "message": "Check your inbox for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder."
+          "title": "E-mail enviado",
+          "message": "Verifique sua caixa de entrada para um link de redefinição de senha. Se não aparecer em alguns minutos, verifique sua caixa de spam."
         },
         "error": {
-          "title": "Error!",
-          "message": "Something went wrong. Please try again."
+          "title": "Erro!",
+          "message": "Algo deu errado. Por favor, tente novamente."
         }
       }
     },
     "reset_password": {
-      "title": "Set new password",
-      "description": "Secure your account with a strong password"
+      "title": "Definir nova senha",
+      "description": "Proteja sua conta com uma senha forte"
     },
     "set_password": {
-      "title": "Secure your account",
-      "description": "Setting password helps you login securely"
+      "title": "Proteja sua conta",
+      "description": "Definir senha ajuda você a entrar com segurança"
     },
     "sign_out": {
       "toast": {
         "error": {
-          "title": "Error!",
-          "message": "Failed to sign out. Please try again."
+          "title": "Erro!",
+          "message": "Falha ao sair. Por favor, tente novamente."
         }
       }
     }
